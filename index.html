@@ -672,7 +672,7 @@ textarea:focus {
     </div>
     <h1>Como foi a aula<br>de <em>hoje?</em></h1>
     <p class="hero-sub">
-      <strong>3 perguntas</strong> · menos de 1 minuto ·<br>
+      <strong>4 perguntas</strong> · menos de 1 minuto ·<br>
       sua opinião melhora os próximos encontros
     </p>
   </div>
@@ -680,10 +680,29 @@ textarea:focus {
   <!-- FORM -->
   <form id="npsForm">
 
-    <!-- P1: NPS -->
+    <!-- P0: Qual aula -->
     <div class="card">
       <div class="card-header">
         <div class="step-badge">1</div>
+        <div>
+          <div class="card-title">Qual aula você está avaliando?</div>
+          <div class="card-desc">Selecione a trilha do encontro de hoje</div>
+        </div>
+      </div>
+      <div class="chips" id="aulaChips">
+        <button type="button" class="chip aula-chip" data-v="Comunidade New Boss">🟠 Comunidade New Boss</button>
+        <button type="button" class="chip aula-chip" data-v="Comunidade Gestão Legal">🟢 Comunidade Gestão Legal</button>
+        <button type="button" class="chip aula-chip" data-v="Comunidade Gestão Financeira">🟣 Comunidade Gestão Financeira</button>
+        <button type="button" class="chip aula-chip" data-v="Comunidade Controladoria">🔴 Comunidade Controladoria</button>
+        <button type="button" class="chip aula-chip" data-v="Comunidade Fechamento de Contratos">🔵 Comunidade Fechamento de Contratos</button>
+        <button type="button" class="chip aula-chip" data-v="Comunidade Inovação e Tecnologia">⚪ Comunidade Inovação e Tecnologia</button>
+      </div>
+    </div>
+
+    <!-- P1: NPS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="step-badge">2</div>
         <div>
           <div class="card-title">De 0 a 10, como você avalia esta aula?</div>
           <div class="card-desc">0 = muito ruim &nbsp;·&nbsp; 10 = excelente</div>
@@ -707,7 +726,7 @@ textarea:focus {
     <!-- P2: Tema mais útil -->
     <div class="card">
       <div class="card-header">
-        <div class="step-badge">2</div>
+        <div class="step-badge">3</div>
         <div>
           <div class="card-title">O que foi mais útil para você?</div>
           <div class="card-desc">Escolha até 2 opções</div>
@@ -726,7 +745,7 @@ textarea:focus {
     <!-- P3: Melhoria -->
     <div class="card">
       <div class="card-header">
-        <div class="step-badge">3</div>
+        <div class="step-badge">4</div>
         <div>
           <div class="card-title">O que poderia ser melhor?</div>
           <div class="card-desc">Opcional · seja direto, sua opinião importa muito</div>
@@ -757,107 +776,7 @@ textarea:focus {
     <p>Sua avaliação foi registrada com sucesso.<br>Ela ajuda a tornar os próximos encontros ainda melhores.</p>
   </div>
 
-  <!-- SETUP GUIDE (para o gestor) -->
-  <div class="setup-guide" id="setupGuide">
-    <p class="guide-title">📋 Guia de configuração — somente para gestores</p>
-    <div class="guide-card">
-      <div class="guide-tabs">
-        <button class="guide-tab active" onclick="switchTab('wa', this)">📱 WhatsApp</button>
-        <button class="guide-tab" onclick="switchTab('sheets', this)">📊 Google Sheets</button>
-        <button class="guide-tab" onclick="switchTab('nps', this)">📈 Como calcular NPS</button>
-      </div>
 
-      <!-- Tab: WhatsApp -->
-      <div class="guide-panel active" id="tab-wa">
-        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-weight:500;">Mensagem pronta para disparar no grupo logo após a aula:</p>
-        <div class="wa-box" id="waMsg">✅ Obrigado por participar da aula de hoje!
-
-Sua opinião faz a comunidade ADVBOX crescer. Avalie em menos de 1 minuto 👇
-
-👉 [COLE AQUI O LINK DO FORMULÁRIO]
-
-São só 3 perguntas rápidas 🙏
-<button class="copy-btn" id="copyBtn" onclick="copyWaMsg()">Copiar</button></div>
-        <p style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6;">💡 <strong>Dica:</strong> dispare a mensagem nos primeiros 10 minutos após a aula — o engajamento é maior enquanto o conteúdo ainda está fresco.</p>
-      </div>
-
-      <!-- Tab: Google Sheets -->
-      <div class="guide-panel" id="tab-sheets">
-        <div class="guide-step">
-          <div class="guide-num">1</div>
-          <div class="guide-text">Abra <strong>script.google.com</strong> e crie um novo projeto. Cole o código do Apps Script (veja abaixo) e salve.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num">2</div>
-          <div class="guide-text">No menu, clique em <strong>Implantar → Nova implantação</strong>. Escolha tipo <code>App da Web</code>, acesso <strong>"Qualquer pessoa"</strong>. Copie a URL gerada.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num">3</div>
-          <div class="guide-text">Neste arquivo HTML, localize a constante <code>SHEET_URL</code> e substitua pelo link copiado. Hospede o HTML no <strong>GitHub Pages</strong> ou em qualquer servidor estático.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num">4</div>
-          <div class="guide-text">Crie uma planilha Google com as colunas: <code>Data/Hora</code> · <code>Nota NPS</code> · <code>Mais Útil</code> · <code>Melhoria</code> · <code>Aula/Turma</code>. O script grava automaticamente cada resposta.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num">5</div>
-          <div class="guide-text">Encurte o link com <strong>bit.ly</strong> ou <strong>Linktree</strong> e coloque na mensagem do WhatsApp. Pronto! 🎉</div>
-        </div>
-        <div style="margin-top:16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;">
-          <p style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Apps Script · cole no editor</p>
-          <pre style="font-size:11px;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;">function doPost(e) {
-  const ss = SpreadsheetApp
-    .openById('ID_DA_SUA_PLANILHA');
-  const sh = ss.getActiveSheet();
-  const d  = JSON.parse(e.postData.contents);
-  sh.appendRow([
-    new Date(),
-    d.nota,
-    d.util.join(', '),
-    d.melhoria,
-    d.aula || ''
-  ]);
-  return ContentService
-    .createTextOutput(
-      JSON.stringify({ok:true})
-    )
-    .setMimeType(
-      ContentService.MimeType.JSON
-    );
-}</pre>
-        </div>
-      </div>
-
-      <!-- Tab: NPS -->
-      <div class="guide-panel" id="tab-nps">
-        <div class="guide-step">
-          <div class="guide-num" style="background:#FF4D4D;">!</div>
-          <div class="guide-text"><strong>Detratores</strong> — notas 0 a 6: clientes insatisfeitos que podem prejudicar a comunidade.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num" style="background:#FF9500;">~</div>
-          <div class="guide-text"><strong>Neutros</strong> — notas 7 e 8: satisfeitos, mas não entusiasmados.</div>
-        </div>
-        <div class="guide-step">
-          <div class="guide-num" style="background:#00B96B;">★</div>
-          <div class="guide-text"><strong>Promotores</strong> — notas 9 e 10: fãs que indicam e impulsionam o crescimento.</div>
-        </div>
-
-        <div style="background:var(--blue-soft);border:1px solid var(--blue-light);border-radius:10px;padding:14px;margin:16px 0;">
-          <p style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px;">Fórmula do NPS</p>
-          <p style="font-size:15px;font-weight:800;color:var(--text);">NPS = % Promotores − % Detratores</p>
-        </div>
-
-        <table class="nps-table">
-          <tr><td>Acima de 75</td><td><span class="badge-pro">Excelente</span></td></tr>
-          <tr><td>Entre 50 e 75</td><td><span class="badge-pro">Muito bom</span></td></tr>
-          <tr><td>Entre 25 e 49</td><td><span class="badge-neu">Bom</span></td></tr>
-          <tr><td>Entre 0 e 24</td><td><span class="badge-neu">Atenção</span></td></tr>
-          <tr><td>Abaixo de 0</td><td><span class="badge-det">Crítico</span></td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
 
 </div><!-- /container -->
 
@@ -866,7 +785,20 @@ São só 3 perguntas rápidas 🙏
 // CONFIG — substitua pela URL do Apps Script
 // ─────────────────────────────────────────
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwlme3Gy_Hijx-7h_cb-sPUHwZ_evC4Q5h5iSzmO1UTyRPIXpCZlQNK4dznOR0WrmuMjg/exec';
-const AULA_ID   = ''; // opcional: ex. "ADVBOX OPS - Mai/2026"
+
+// ─────────────────────────────────────────
+// Seleção de aula
+// ─────────────────────────────────────────
+let aulaVal = null;
+
+document.querySelectorAll('.aula-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.aula-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    aulaVal = chip.dataset.v;
+    checkReady();
+  });
+});
 
 // ─────────────────────────────────────────
 // NPS buttons
@@ -919,7 +851,7 @@ document.querySelectorAll('.chip').forEach(chip => {
 // Enable submit
 // ─────────────────────────────────────────
 function checkReady() {
-  document.getElementById('btnSubmit').disabled = (npsVal === null);
+  document.getElementById('btnSubmit').disabled = (npsVal === null || aulaVal === null);
 }
 
 // ─────────────────────────────────────────
@@ -935,7 +867,7 @@ document.getElementById('npsForm').addEventListener('submit', async e => {
     nota:     npsVal,
     util:     selected,
     melhoria: document.getElementById('melhoria').value.trim(),
-    aula:     AULA_ID,
+    aula:     aulaVal,
     ts:       new Date().toISOString()
   };
 
@@ -967,35 +899,8 @@ document.getElementById('npsForm').addEventListener('submit', async e => {
 });
 
 function showSuccess() {
-  document.getElementById('npsForm').style.display    = 'none';
-  document.getElementById('setupGuide').style.display = 'none';
+  document.getElementById('npsForm').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
-}
-
-// ─────────────────────────────────────────
-// Guide tabs
-// ─────────────────────────────────────────
-function switchTab(id, el) {
-  document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('tab-' + id).classList.add('active');
-}
-
-// ─────────────────────────────────────────
-// Copy WhatsApp message
-// ─────────────────────────────────────────
-function copyWaMsg() {
-  const text = `✅ Obrigado por participar da aula de hoje!\n\nSua opinião faz a comunidade ADVBOX crescer. Avalie em menos de 1 minuto 👇\n\n👉 [COLE AQUI O LINK DO FORMULÁRIO]\n\nSão só 3 perguntas rápidas 🙏`;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = '✓ Copiado!';
-    btn.classList.add('done');
-    setTimeout(() => {
-      btn.textContent = 'Copiar';
-      btn.classList.remove('done');
-    }, 2500);
-  });
 }
 </script>
 </body>
